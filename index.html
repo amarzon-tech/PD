@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PD Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 p-4">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-4">Peritoneal Dialysis Tracker</h1>
+
+    <!-- Patient Selection -->
+    <div class="mb-4">
+      <label for="patient" class="block font-semibold mb-1">Select Patient:</label>
+      <select id="patient" class="w-full p-2 border rounded">
+        <option value="alice">Alice</option>
+        <option value="bob">Bob</option>
+        <option value="carol">Carol</option>
+      </select>
+    </div>
+
+    <!-- Data Entry Form -->
+    <form id="exchangeForm" class="grid grid-cols-2 gap-4 bg-white p-4 rounded shadow">
+      <div>
+        <label>Date/Time</label>
+        <input type="datetime-local" id="datetime" class="w-full p-2 border rounded" required />
+      </div>
+      <div>
+        <label>Dialysis Type</label>
+        <select id="dialysisType" class="w-full p-2 border rounded">
+          <option value="CAPD">CAPD</option>
+          <option value="CCPD">CCPD</option>
+        </select>
+      </div>
+      <div>
+        <label>Fluid Type</label>
+        <select id="fluidType" class="w-full p-2 border rounded">
+          <option value="Dianeal 1.5%">Dianeal 1.5%</option>
+          <option value="Dianeal 2.5%">Dianeal 2.5%</option>
+          <option value="Dianeal 4.25%">Dianeal 4.25%</option>
+          <option value="Extraneal">Extraneal</option>
+          <option value="Nutrineal">Nutrineal</option>
+        </select>
+      </div>
+      <div>
+        <label>Volume In (mL)</label>
+        <input type="number" id="volumeIn" class="w-full p-2 border rounded" required />
+      </div>
+      <div>
+        <label>Volume Out (mL)</label>
+        <input type="number" id="volumeOut" class="w-full p-2 border rounded" required />
+      </div>
+      <div>
+        <label>Dwell Time (hours)</label>
+        <input type="number" id="dwellTime" class="w-full p-2 border rounded" />
+      </div>
+      <div class="flex items-center mt-4">
+        <input type="checkbox" id="bmCheck" class="mr-2" />
+        <label for="bmCheck">Bowel Movement</label>
+      </div>
+      <div>
+        <label>Urine Volume (mL)</label>
+        <input type="number" id="urineVolume" class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label>BP (Systolic/Diastolic)</label>
+        <input type="text" id="bp" placeholder="120/80" class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label>Pulse (bpm)</label>
+        <input type="number" id="pulse" class="w-full p-2 border rounded" />
+      </div>
+      <div class="col-span-2">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Exchange</button>
+      </div>
+    </form>
+
+    <!-- Charts and Summaries -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-2">Ultrafiltration & Urine Volume Trends</h2>
+      <canvas id="ufChart"></canvas>
+      <canvas id="bpChart" class="mt-6"></canvas>
+    </div>
+  </div>
+</body>
+</html>
